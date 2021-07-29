@@ -1,70 +1,37 @@
-# Getting Started with Create React App
+FSM talk
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+FRONTEND DEVELOPERS! Hey, I’m sure you’ve heard a million times already which one is the best UI framework! For years it has been a debate and there has been many emerging technologies that supposedly changed the way you work, right? For a while there’s been a war between the different UI technologies, nowadays it looks like that war has settled and went into a Cold War state between angular, react and vue, and x and y.
 
-## Available Scripts
+Nowadays the war has shifted to another plane of existence. STATE MANAGEMENT. State management is basically a way to describe where the data lives. I’ve had to deal with react in the past few years so let me update you on the evolution of state management libraries in that scene at least what I’ve been through.
+- this.setState -> Flux -> Reflux -> Redux -> MobX -> Redux Thunks -> Redux Saga -> hooks -> context -> Recoil -> Zustand -> Please no more bc my head’s gonna blow up
+Hell we’ve been writing our own @RisingStack, check out react-easy-state btw it’s easy and react (no-one ever mentioned the two words together)
 
-In the project directory, you can run:
+There must be a better way. We have to turn to science for an answer.
 
-### `yarn start`
+Ok ok. Think of the most scientific thing in computer science. What is that?
+I’ve got a few guesses:
+- Bayesian Uncertainty measures for neural networks if you’re into machine learning
+- Category theory and MONADS ( if you’re a functional nerd )
+- Raytracing or binary space partitioning in game programming
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I’m a simple man, and I work on visible and invisible things on the internet. For me one of the most interesting topics in computer science was Finite State Machines since I’ve learnt about them in university some time ago. It never really clicked until recently when I saw the author of XState present his ideas at a conference. Don’t worry our time is also finite, so I’d like to keep it as short as possible.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Let me explain how FSM can help you write better programs today:
 
-### `yarn test`
+- What is a FSM?
+- Traffic light example
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- FSM applied
+    - Data fetching example:
+        - What does most of the apps do? UI -> Click -> API -> Data transform -> UI -> Click -> API -> Data transform
+            - What are we doing wrong?????
+                - Not clearly defining application states, MOST PROGRAMMERS ONLY cover the happy path. As a developer you always have to remember that the happy path is not the only path.
+            - How does XState help?
+    - Problems of state management in React
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Things like WIZARDS, multi-step pickers, data fetching made easy.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    - Problems modelling applications
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+I’m not saying that right now you should go back to your boss tomorrow and say we’re halting development for the next quarter bc of an application rewrite (please don’t I beg you) All I’m saying that with this tool under your belt you should be aware that there are certain problems that are easier to manage with tools like XState. FSM in general is a way to develop applications but you can learn from it, and apply certain parts of it into your current thinking process when you try to create states and transitions in your application.
