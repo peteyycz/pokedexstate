@@ -1,8 +1,19 @@
 import { useService } from "@xstate/react";
 import { useEffect } from "react";
+import { Card, ListGroup, ListGroupItem, Spinner} from "react-bootstrap";
 
 export function Pokemon({ service }) {
   const [{ context, matches }, send] = useService(service);
+
+  if (matches("loading")) {
+    return (
+      <Card>
+        <Card.Body>
+      <Spinner animation="border" />
+        </Card.Body>
+      </Card>
+    );
+  }
 
   if (matches("failure")) {
     return (
@@ -15,28 +26,28 @@ export function Pokemon({ service }) {
   const { pokemon } = context;
 
   return (
-    <section>
-      {pokemon && (
-        <>
-          <h1>
-            {pokemon.name}
-            <span>#{pokemon.order}</span>
-          </h1>
-          <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-          <h2>Abilities</h2>
-          <ul>
+    <Card>
+      <Card.Img variant="top" src={pokemon.sprites.front_default} />
+      <Card.Body>
+        <Card.Title>
+          {pokemon.name}
+          <span>#{pokemon.order}</span>
+        </Card.Title>
+        <Card.Text>
+          <ListGroup>
+            <ListGroup.Item variant="dark">Abilities</ListGroup.Item>
             {pokemon.abilities.map(({ ability }) => {
-              return <li key={ability.name}>{ability.name}</li>;
+              return <ListGroup.Item key={ability.name}>{ability.name}</ListGroup.Item>;
             })}
-          </ul>
-          <h2>Types</h2>
-          <ul>
+          </ListGroup>
+          <ListGroup>
+            <ListGroup.Item variant="dark">Types</ListGroup.Item>
             {pokemon.types.map(({ type }) => {
-              return <li key={type.name}>{type.name}</li>;
+              return <ListGroup.Item key={type.name}>{type.name}</ListGroup.Item>;
             })}
-          </ul>
-        </>
-      )}
-    </section>
+          </ListGroup>
+        </Card.Text>
+      </Card.Body>
+    </Card>
   );
 }

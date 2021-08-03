@@ -1,6 +1,6 @@
 import { createMachine, assign, spawn } from "xstate";
 import { apiClient } from "../../api-client";
-import {createPokemonMachine} from "./pokemon";
+import { createPokemonMachine } from "./pokemon";
 
 async function invokeFetchPokemon(context) {
   const { page } = context;
@@ -26,12 +26,9 @@ const PAGING = {
 const SELECT = {
   SELECT: {
     target: "selected",
-    actions: (_, event) => {
-      const pokemon = spawn(createPokemonMachine(event.name));
-      return {
-        selectedPokemon: pokemon,
-      };
-    },
+    actions: assign({
+      selectedPokemon: (_, event) => spawn(createPokemonMachine(event.name)),
+    }),
   },
 };
 

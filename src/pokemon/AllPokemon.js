@@ -1,40 +1,49 @@
-import { useMachine } from "@xstate/react";
-import {Pokemon} from "./Pokemon";
+import { useMachine, useService } from "@xstate/react";
+import { Badge, Button, ButtonGroup, Col, Container, Row, ListGroup } from "react-bootstrap";
+import { Pokemon } from "./Pokemon";
 import { allPokemonMachine } from "./state-machines/all-pokemon";
 
 export const AllPokemon = () => {
-  const [{ matches, context }, send] = useMachine(allPokemonMachine, {devTools: true});
+  const [{ matches, context }, send] = useMachine(allPokemonMachine, { devTools: true });
+  const { page, allPokemon, selectedPokemon: selectedPokemonMachine } = context;
 
   if (matches("loading")) {
     return <span>loading</span>;
   }
 
-  const { page, allPokemon, selectedPokemon } = context;
-
   return (
-    <div>
-      Page: {page + 1}
-      <ul>
-        {allPokemon.map(({ name }) => {
-          return (
-            <li
-              onClick={() => send("SELECT", { name })}
-              style={{
-                background: selectedPokemon === name ? "red" : "white",
-              }}
-              key={name}
-            >
-              {name}
-            </li>
-          );
-        })}
-      </ul>
-      <button onClick={() => send("PREVIOUS_PAGE")}>Previous page</button>
-      <button onClick={() => send("NEXT_PAGE")}>Next page</button>
-
-      {console.log(selectedPokemon)}
-
-      {selectedPokemon && <Pokemon service={selectedPokemon} />}
-    </div>
+    <Container>
+      <Row>
+        <Col>
+          <h1>
+            PokedeXState <Badge bg="secondary">#{page + 1}</Badge>
+          </h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <ListGroup>
+            {allPokemon.map(({ name }) => {
+              return (
+                <ListGroup.Item onClick={() => send("SELECT", { name })} key={name}>
+                  {name}
+                </ListGroup.Item>
+              );
+            })}
+          </ListGroup>
+          <div>
+            <ButtonGroup aria-label="Basic example">
+              <Button onClick={() => send("PREVIOUS_PAGE")} variant="primary">
+                Previous page
+              </Button>
+              <Button onClick={() => send("NEXT_PAGE")} variant="primary">
+                Next page
+              </Button>
+            </ButtonGroup>
+          </div>
+        </Col>
+        <Col>{selectedPokemonMachine && <Pokemon service={selectedPokemonMachine} />}</Col>
+      </Row>
+    </Container>
   );
 };
