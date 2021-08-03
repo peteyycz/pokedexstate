@@ -1,6 +1,5 @@
 import { useService } from "@xstate/react";
-import { useEffect } from "react";
-import { Card, ListGroup, ListGroupItem, Spinner} from "react-bootstrap";
+import { Card, ListGroup, Spinner} from "react-bootstrap";
 
 export function Pokemon({ service }) {
   const [{ context, matches }, send] = useService(service);

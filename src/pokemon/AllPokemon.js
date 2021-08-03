@@ -1,4 +1,4 @@
-import { useMachine, useService } from "@xstate/react";
+import { useMachine } from "@xstate/react";
 import { Badge, Button, ButtonGroup, Col, Container, Row, ListGroup } from "react-bootstrap";
 import { Pokemon } from "./Pokemon";
 import { allPokemonMachine } from "./state-machines/all-pokemon";
